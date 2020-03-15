@@ -10,7 +10,7 @@ variable "region" {
 
 variable "package_name" {
   description = "Name of the compiled code package to upload to the Lambda"
-  default     = "voice-0.0.1-SNAPSHOT.jar"
+  default     = "voice-0.0.1-SNAPSHOT.zip"
 }
 
 variable "lambda_function_name" {
