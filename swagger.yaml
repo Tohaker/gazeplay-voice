@@ -1,0 +1,76 @@
+openapi: 3.0.0
+# Added by API Auto Mocking Plugin
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/g7161/gazeplay-voice/1.0.0
+info:
+  description: This API allows a user to generate one or many voice samples for use in GazePlay.
+  version: "1.0.0"
+  title: GazePlay Voice Synthesis API
+  contact:
+    email: gazeplay.net@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: users
+    description: Operations available to all users
+paths:
+  /phrase:
+    get:
+      tags:
+        - users
+      summary: synthesises one phrase
+      operationId: synthesisePhrase
+      description: |
+        By passing in the appropriate options, you can synthesise
+        a single phrase and get the download link.
+      parameters:
+        - in: query
+          name: message
+          description: pass a message to be read out
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: voice
+          description: id of the AWS Polly voice to use
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 59
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Phrase'
+        '400':
+          description: bad input parameter
+components:
+  schemas:
+    Phrase:
+      type: object
+      required:
+        - id
+        - message
+        - url
+        - ttl
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        message:
+          type: string
+          example: "Hello, GazePlay"
+        url:
+          type: string
+          format: url
+          example: "s3://some-path"
+        ttl:
+          type: integer
+          example: 3600
