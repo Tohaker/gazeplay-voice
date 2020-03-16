@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "voice_function" {
   filename          = "../build/distributions/${var.package_name}"
   source_code_hash  = filebase64sha256("../build/distributions/${var.package_name}")
-  handler           = "net.gazeplay.voice.StreamLambdaHandler"
+  handler           = "net.gazeplay.voice.PhraseHandler"
 
   function_name     = var.lambda_function_name
   role              = aws_iam_role.lambda_voice.arn
