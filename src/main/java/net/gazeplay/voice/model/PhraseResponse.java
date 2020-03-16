@@ -1,12 +1,12 @@
 package net.gazeplay.voice.model;
 
-public class Response {
+public class PhraseResponse {
 
     private final String id;
     private final String url;
     private final long ttl;
 
-    public Response(String id, String url, long ttl) {
+    public PhraseResponse(String id, String url, long ttl) {
         this.id = id;
         this.url = url;
         this.ttl = ttl;

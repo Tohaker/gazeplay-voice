@@ -4,8 +4,7 @@ public class Phrase {
 
     private String[] messages;
 
-    public Phrase() {
-    }
+    public Phrase() {}
 
     public void setMessages(String[] messages) {
         this.messages = messages;
