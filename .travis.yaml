@@ -1,0 +1,24 @@
+language: java
+
+addons:
+  apt:
+    update: true
+
+before_install:
+  - sudo apt-get install -y zip unzip
+  - wget https://releases.hashicorp.com/terraform/${TERRAFORM}/terraform_${TERRAFORM}_linux_amd64.zip
+  - unzip terraform_${TERRAFORM}_linux_amd64.zip
+  - sudo mv terraform /usr/local/bin/
+  - terraform --version
+  - chmod +x ./deployment/deploy.sh
+  - chmod +x ./gradlew
+
+install:
+  - ./gradlew buildZip
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: bash deployment/deploy.sh
+  on:
+    branch: master

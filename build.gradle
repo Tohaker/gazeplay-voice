@@ -20,7 +20,7 @@ test {
 	useJUnitPlatform()
 }
 
-task buildZip(type: Zip) {
+task buildZip(type: Zip, group: 'build') {
 	from compileJava
 	from processResources
 	into('lib') {
